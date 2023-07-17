@@ -1,0 +1,4 @@
+pandas
+tmdbv3api
+requests
+dotenv
