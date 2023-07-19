@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 const NavBar: FC = (): ReactElement => {
   return (
     <>
-      <header>
+      <header className="mb-2">
         <div className="logoDiv">
           <span>
             <Link to="/">Logo</Link>

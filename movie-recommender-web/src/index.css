@@ -21,7 +21,16 @@ li {
   list-style: none;
 }
 
+.mb-2 {
+  margin-bottom: 20px;
+}
+
 .my-2 {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.my-3 {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
