@@ -2,3 +2,5 @@ pandas
 tmdbv3api
 requests
 dotenv
+lxml
+TMDB
