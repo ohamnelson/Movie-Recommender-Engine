@@ -4,3 +4,4 @@ requests
 dotenv
 lxml
 TMDB
+scikit-learn
