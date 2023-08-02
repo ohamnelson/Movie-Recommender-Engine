@@ -5,3 +5,5 @@ dotenv
 lxml
 TMDB
 scikit-learn
+fastapi
+"uvicorn[standard]"
