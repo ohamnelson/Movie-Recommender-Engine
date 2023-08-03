@@ -15,17 +15,32 @@ def create_similarity():
     similarity = cosine_similarity(count_matrix)
     return data,similarity
 
-def recommend(movie):
-    movie_name = movie.lower()
+def search(word):
     data, similarity = create_similarity()
-    title = [x.lower() for x in data["movie_title"]]
-    i = title.index(movie_name)
+    data1 = list(data["movie_title"])
+    data1.append(word)
+    # creating a count matrix
+    cv = TfidfVectorizer()
+    count_matrix1 = cv.fit_transform(data1)
+    # creating a similarity score matrix
+    similarity1 = cosine_similarity(count_matrix1)
+
+    found = list(enumerate(similarity1[-1]))
+    test1 = sorted(found, key= lambda x:x[1], reverse=True)[:5]
+    for i in range(len(test1)-1): 
+        if(test1[i][0]) == len(data):
+            del test1[i]
+    test1[0][0]
+    return test1[0][0]
+
+def recommend(movie):
+    data, similarity = create_similarity()
+    i = search(movie)
     recommended = list(enumerate(similarity[i]))
 
     fin = sorted(recommended, key= lambda x:x[1], reverse=True)[:10]
-    movie_list = [data["movie_title"][i[0]] for i in fin]
+    movie_list = [data["movie_title"][i[0]] for i in fin[1:]]
     return movie_list
-
 
 @app.get("/movies/{movies}")
 async def read_item(movies: str):
