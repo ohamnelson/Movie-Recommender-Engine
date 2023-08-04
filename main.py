@@ -26,26 +26,29 @@ def search(word):
     similarity1 = cosine_similarity(count_matrix1)
 
     found = list(enumerate(similarity1[-1]))
-    test1 = sorted(found, key= lambda x:x[1], reverse=True)[:5]
-    for i in range(len(test1)-1): 
-        if(test1[i][0]) == len(data):
-            del test1[i]
-    test1[0][0]
-    return test1[0][0]
+    ids = sorted(found, key= lambda x:x[1], reverse=True)[:5]
+    for i in range(len(ids)-1): 
+        if(ids[i][0]) == len(data):
+            del ids[i]
+    ids[0][0]
+    return ids[0][0]
 
 def recommend(movie):
     data, similarity = create_similarity()
     i = search(movie)
     recommended = list(enumerate(similarity[i]))
+    sort_recommendations = sorted(recommended, key= lambda x:x[1], reverse=True)[:11]
 
-    fin = sorted(recommended, key= lambda x:x[1], reverse=True)[:10]
-    movie_list = [data["movie_title"][i[0]] for i in fin[1:]]
+    movie_list = {}
+    for i in sort_recommendations[1:]:
+        movie_list[data["movie_title"][i[0]]] = data["poster"][i[0]]
+
     return movie_list
 
 @app.get("/movies/{movies}")
 async def read_item(movies: str):
-    test = recommend(movies)
-    return test
+    recommendations = recommend(movies)
+    return recommendations
    
 
 if __name__ == '__main__':
