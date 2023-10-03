@@ -1,0 +1,11 @@
+runtime: python
+env: flex
+entrypoint: gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app
+
+runtime_config:
+  operating_system: ubuntu22
+
+resources:
+  cpu: 1
+  memory_gb: 4
+  disk_size_gb: 4

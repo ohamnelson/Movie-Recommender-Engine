@@ -3,11 +3,42 @@ import numpy as np
 from fastapi import FastAPI
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from google.cloud import storage
+from io import StringIO
+import os
+
+
+# Specify your Google Cloud Storage bucket name and CSV file path
+bucket_name = "final_movie"
+file_path = "https://storage.cloud.google.com/final_movie/MovieFinal.csv"
+
+# Initialize the Google Cloud Storage client
+client = storage.Client("movie-recommendation-398607")
+
+# Get the bucket
+bucket = client.bucket(bucket_name)
+
+# Get the blob (object) containing the CSV file
+blob = bucket.blob("MovieFinal.csv")
+
+# Download the CSV file as a string
+csv_data = blob.download_as_string()
+csv_string = csv_data.decode('utf-8')
 
 app = FastAPI()
 
+@app.get("/")
+def index():
+    return{"Hello World"}
+
+@app.get("/test/{movi}")
+def test_imdex(movi):
+    testing = movi
+    return{"Hello World":testing}
+
 def create_similarity():
-    data = pd.read_csv("MovieFinal.csv")
+    #data = pd.read_csv("MovieFinal.csv")
+    data = pd.read_csv(StringIO(csv_string))
     # creating a count matrix
     cv = TfidfVectorizer()
     count_matrix = cv.fit_transform(data["combine"])
@@ -52,4 +83,4 @@ async def read_item(movies: str):
    
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug = True)
