@@ -1,7 +1,20 @@
-import React from "react";
+import {
+  MovieCardContainer,
+  MovieImage,
+  MovieInfo,
+  MovieTitle,
+} from "./MovieCard.style";
+import movie from "../../assets/react.svg";
 
-function MovieCard() {
-  return <div>MovieCard</div>;
-}
+const MovieCard = () => {
+  return (
+    <MovieCardContainer>
+      <MovieImage src={movie} />
+      <MovieInfo>
+        <MovieTitle>Avatar</MovieTitle>
+      </MovieInfo>
+    </MovieCardContainer>
+  );
+};
 
 export default MovieCard;

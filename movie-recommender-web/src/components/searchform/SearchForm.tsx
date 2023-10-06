@@ -1,7 +1,13 @@
 import { FC, ReactElement, useEffect, useRef, useState } from "react";
 import { ErrorMessage, SearchFormContainer } from "./SearchForm.style";
 
-const SearchForm: FC = (): ReactElement => {
+interface SearchFormProps {
+  sendMovieToParent: (movie: string) => void;
+}
+
+const SearchForm: FC<SearchFormProps> = ({
+  sendMovieToParent,
+}): ReactElement => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [movieName, setMovieName] = useState("");
@@ -25,6 +31,7 @@ const SearchForm: FC = (): ReactElement => {
       setFormIsValid(false);
       return;
     }
+    sendMovieToParent(movieName);
   };
 
   return (
