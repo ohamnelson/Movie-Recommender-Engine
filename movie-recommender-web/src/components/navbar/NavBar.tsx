@@ -10,14 +10,6 @@ const NavBar: FC = (): ReactElement => {
             <Link to="/">Logo</Link>
           </span>
         </div>
-
-        <nav>
-          <ul>
-            <li>
-              <NavLink to="/">All Movies</NavLink>
-            </li>
-          </ul>
-        </nav>
       </header>
     </>
   );
