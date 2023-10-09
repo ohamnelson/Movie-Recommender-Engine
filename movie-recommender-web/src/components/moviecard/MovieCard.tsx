@@ -5,13 +5,20 @@ import {
   MovieTitle,
 } from "./MovieCard.style";
 import movie from "../../assets/react.svg";
+import { FC, useEffect } from "react";
 
-const MovieCard = () => {
+interface MovieCardProps {
+  title: string;
+  imageURL: string;
+}
+
+const MovieCard: FC<MovieCardProps> = ({ title, imageURL }) => {
   return (
     <MovieCardContainer>
-      <MovieImage src={movie} />
+      {imageURL}
+      <MovieImage src={imageURL} />
       <MovieInfo>
-        <MovieTitle>Avatar</MovieTitle>
+        <MovieTitle>{title}</MovieTitle>
       </MovieInfo>
     </MovieCardContainer>
   );

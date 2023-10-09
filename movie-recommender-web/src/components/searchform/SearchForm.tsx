@@ -31,9 +31,9 @@ const SearchForm: FC<SearchFormProps> = ({
       setFormIsValid(false);
       return;
     }
+    // console.log({ movieName });
     sendMovieToParent(movieName);
   };
-
   return (
     <>
       <SearchFormContainer
