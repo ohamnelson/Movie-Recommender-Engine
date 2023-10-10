@@ -15,7 +15,6 @@ interface MovieCardProps {
 const MovieCard: FC<MovieCardProps> = ({ title, imageURL }) => {
   return (
     <MovieCardContainer>
-      {imageURL}
       <MovieImage src={imageURL} />
       <MovieInfo>
         <MovieTitle>{title}</MovieTitle>

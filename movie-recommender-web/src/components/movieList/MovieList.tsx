@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { MovieListContainer } from "./MovieList.style";
 import MovieCard from "../moviecard/MovieCard";
 import { Movie } from "../../service/movieService";
@@ -13,23 +13,26 @@ const MovieList: FC<MovieListProps> = ({ movies, loading }) => {
     <>
       <br />
       {!loading && movies.length == 0 && (
-        <small style={{ textAlign: "center" }}>
+        <p style={{ textAlign: "center" }}>
           Enter a movie title and we'll recommend something similar
-        </small>
+        </p>
       )}
       {loading && (
         <p style={{ textAlign: "center" }}>
-          Hang On. We're fetching movies you might like.
+          Hang On. We're fetching similar movies you might like.
         </p>
       )}
       <MovieListContainer>
         {movies &&
           movies.map((movie) => (
-            <MovieCard
-              key={movie.title}
-              title={movie.title}
-              imageURL={movie.imageUrl}
-            />
+            <>
+              {movie.imageUrl}
+              <MovieCard
+                key={movie.title}
+                title={movie.title}
+                imageURL={movie.imageUrl}
+              />
+            </>
           ))}
       </MovieListContainer>
     </>

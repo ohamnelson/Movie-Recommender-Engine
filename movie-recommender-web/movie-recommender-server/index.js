@@ -6,7 +6,7 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 
 const app = express();
 
-const PORT = 3000;
+const PORT = 3133;
 const HOST = "localhost";
 const API_SERVICE_URL =
   "https://movie-recommendation-398607.ue.r.appspot.com/movies";

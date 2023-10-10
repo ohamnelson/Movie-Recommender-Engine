@@ -15,7 +15,7 @@ export interface MoviesData {
 export const getMovies = async (movieName: string): Promise<any> => {
   try {
     const response = await axios.get(
-      `http://localhost:3000/movies/?title=${movieName}`
+      `http://localhost:3133/movies/?title=${movieName}`
     );
     const movies: MoviesData = response.data as MoviesData;
     return movies;
