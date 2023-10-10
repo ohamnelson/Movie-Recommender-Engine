@@ -3,9 +3,19 @@ env: flex
 entrypoint: gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app
 
 runtime_config:
-  operating_system: ubuntu22
+    operating_system: "ubuntu22"
+    runtime_version: "3.11"
 
 resources:
-  cpu: 1
-  memory_gb: 4
-  disk_size_gb: 4
+  cpu: 2
+  memory_gb: 8
+  disk_size_gb: 10
+
+handlers:
+- url: /.*
+  static_dir: static/images
+  http_headers:
+    Access-Control-Allow-Origin: "*"
+    Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS"
+    Access-Control-Allow-Headers: "Content-Type"
+
