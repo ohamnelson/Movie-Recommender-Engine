@@ -7,17 +7,9 @@ const NavBar: FC = (): ReactElement => {
       <header className="mb-2">
         <div className="logoDiv">
           <span>
-            <Link to="/">Logo</Link>
+            <Link to="/">OhamTheExplorer</Link>
           </span>
         </div>
-
-        <nav>
-          <ul>
-            <li>
-              <NavLink to="/">All Movies</NavLink>
-            </li>
-          </ul>
-        </nav>
       </header>
     </>
   );
