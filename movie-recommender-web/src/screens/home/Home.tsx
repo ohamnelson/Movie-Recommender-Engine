@@ -5,23 +5,22 @@ import MovieList from "../../components/movieList/MovieList";
 import MovieCard from "../../components/moviecard/MovieCard";
 
 const Home: FC = (): ReactElement => {
-  const [movies, setMovies] = useState<any>([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [movieTitle, setMovieTitle] = useState<string>("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubmission = async (movie: string) => {
+  const handleSubmission = async (movie: string, movieTitle: string) => {
     setLoading(true);
+    setMovieTitle(movieTitle);
     setMovies(() => []);
     await getMovieRecommendations(movie);
   };
 
   const getMovieRecommendations = async (movie: string) => {
     const res = await getMovies(movie);
+    console.log(res);
     if (res !== null) setLoading(false);
-    const moviesArr = Object.keys(res).map((title) => ({
-      title,
-      imageURL: res[title],
-    }));
-    setMovies([...moviesArr]);
+    setMovies([...res]);
   };
 
   return (
@@ -34,7 +33,7 @@ const Home: FC = (): ReactElement => {
       </div>
 
       <section id="movies-cards">
-        <MovieList loading={loading} movies={movies} />
+        <MovieList movieTitle={movieTitle} loading={loading} movies={movies} />
       </section>
     </>
   );

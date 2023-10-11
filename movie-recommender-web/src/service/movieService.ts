@@ -5,19 +5,15 @@ import axios from "axios";
 
 export interface Movie {
   title: string;
-  imageUrl: string;
+  link: string;
 }
 
-export interface MoviesData {
-  [title: string]: string;
-}
-
-export const getMovies = async (movieName: string): Promise<any> => {
+export const getMovies = async (movieName: string): Promise<Movie[] | null> => {
   try {
     const response = await axios.get(
       `http://localhost:3133/movies/?title=${movieName}`
     );
-    const movies: MoviesData = response.data as MoviesData;
+    const movies = response.data as Movie[];
     return movies;
   } catch (error) {
     console.error({ error });

@@ -2,13 +2,15 @@ import React, { FC, useEffect } from "react";
 import { MovieListContainer } from "./MovieList.style";
 import MovieCard from "../moviecard/MovieCard";
 import { Movie } from "../../service/movieService";
+import { MovieTitle } from "../moviecard/MovieCard.style";
 
 interface MovieListProps {
   movies: Movie[];
   loading: boolean;
+  movieTitle: string;
 }
 
-const MovieList: FC<MovieListProps> = ({ movies, loading }) => {
+const MovieList: FC<MovieListProps> = ({ movies, loading, movieTitle }) => {
   return (
     <>
       <br />
@@ -19,20 +21,31 @@ const MovieList: FC<MovieListProps> = ({ movies, loading }) => {
       )}
       {loading && (
         <p style={{ textAlign: "center" }}>
-          Hang On. We're fetching similar movies you might like.
+          Hang On. We're fetching movies similar to{" "}
+          <strong>
+            <em>{movieTitle}</em>
+          </strong>
+          .
+        </p>
+      )}
+
+      {movies.length > 0 && (
+        <p style={{ textAlign: "center" }}>
+          These are the movies similar to{" "}
+          <strong>
+            <em>{movieTitle}</em>
+          </strong>
+          .
         </p>
       )}
       <MovieListContainer>
         {movies &&
           movies.map((movie) => (
-            <>
-              {movie.imageUrl}
-              <MovieCard
-                key={movie.title}
-                title={movie.title}
-                imageURL={movie.imageUrl}
-              />
-            </>
+            <MovieCard
+              key={movie.title}
+              title={movie.title}
+              imageURL={movie.link}
+            />
           ))}
       </MovieListContainer>
     </>

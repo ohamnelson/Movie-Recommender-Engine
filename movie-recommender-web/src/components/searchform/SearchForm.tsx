@@ -2,7 +2,7 @@ import { FC, ReactElement, useEffect, useRef, useState } from "react";
 import { ErrorMessage, SearchFormContainer } from "./SearchForm.style";
 
 interface SearchFormProps {
-  sendMovieToParent: (movie: string) => void;
+  sendMovieToParent: (movie: string, movieName: string) => void;
 }
 
 const SearchForm: FC<SearchFormProps> = ({
@@ -32,7 +32,7 @@ const SearchForm: FC<SearchFormProps> = ({
       return;
     }
     // console.log({ movieName });
-    sendMovieToParent(movieName);
+    sendMovieToParent(movieName, movieName);
   };
   return (
     <>

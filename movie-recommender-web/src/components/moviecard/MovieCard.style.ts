@@ -6,16 +6,17 @@ export const MovieInfo = styled.div`
   width: 100%;
   display: grid;
   place-content: center;
+  font-weight: bold;
   transform: translateY(100%);
-  padding: 20px;
-  background-image: linear-gradient(to bottom, transparent, black);
+  padding: 25px;
+  background-image: linear-gradient(to bottom, transparent, black 90%);
   transition: all 0.2s ease-in;
 `;
 
 export const MovieCardContainer = styled.div`
   width: 100%;
   max-width: 180px;
-  min-height: 200px;
+  height: 270px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -28,8 +29,8 @@ export const MovieCardContainer = styled.div`
 `;
 
 export const MovieImage = styled.img`
-  height: 100%;
-  width: auto;
+  height: auto;
+  width: 100%;
 `;
 
 export const MovieTitle = styled.p`

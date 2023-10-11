@@ -10,6 +10,7 @@ export const MovieListContainer = styled.div`
   justify-items: center;
   gap: 20px;
   row-gap: 40px;
+  margin-bottom: 20px;
 
   @media screen and (min-width: 550px) {
     gap: 30px;
