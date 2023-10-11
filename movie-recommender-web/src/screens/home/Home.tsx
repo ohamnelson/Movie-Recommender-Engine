@@ -1,8 +1,7 @@
 import { FC, ReactElement, useState } from "react";
 import SearchForm from "../../components/searchform/SearchForm";
-import { Movie, MoviesData, getMovies } from "../../service/movieService";
+import { Movie, getMovies } from "../../service/movieService";
 import MovieList from "../../components/movieList/MovieList";
-import MovieCard from "../../components/moviecard/MovieCard";
 
 const Home: FC = (): ReactElement => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -20,7 +19,7 @@ const Home: FC = (): ReactElement => {
     const res = await getMovies(movie);
     console.log(res);
     if (res !== null) setLoading(false);
-    setMovies([...res]);
+    setMovies([...(res as any[])]);
   };
 
   return (
