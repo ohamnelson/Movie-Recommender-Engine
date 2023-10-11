@@ -4,8 +4,6 @@ import {
   MovieInfo,
   MovieTitle,
 } from "./MovieCard.style";
-import movie from "../../assets/react.svg";
-import { FC, useEffect } from "react";
 
 interface MovieCardProps {
   title: string;

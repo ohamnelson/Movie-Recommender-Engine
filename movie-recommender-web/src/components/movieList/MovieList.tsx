@@ -1,8 +1,7 @@
-import React, { FC, useEffect } from "react";
+import { FC } from "react";
 import { MovieListContainer } from "./MovieList.style";
 import MovieCard from "../moviecard/MovieCard";
 import { Movie } from "../../service/movieService";
-import { MovieTitle } from "../moviecard/MovieCard.style";
 
 interface MovieListProps {
   movies: Movie[];
