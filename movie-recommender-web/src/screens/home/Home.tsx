@@ -17,9 +17,10 @@ const Home: FC = (): ReactElement => {
 
   const getMovieRecommendations = async (movie: string) => {
     const res = await getMovies(movie);
-    console.log(res);
     if (res !== null) setLoading(false);
-    setMovies([...(res as any[])]);
+    if (res !== null) {
+      setMovies([...res]);
+    }
   };
 
   return (
