@@ -11,7 +11,7 @@ export interface Movie {
 export const getMovies = async (movieName: string): Promise<Movie[] | null> => {
   try {
     const response = await axios.get(
-      `http://localhost:3133/movies/?title=${movieName}`
+      `http://10.118.0.2:3133/movies/?title=${movieName}`
     );
     const movies = response.data as Movie[];
     return movies;
