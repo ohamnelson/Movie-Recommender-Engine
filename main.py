@@ -73,7 +73,7 @@ def recommend(movie):
     movie_list = {}
     for i in sort_recommendations[1:]:
         movie_list[data["movie_title"][i[0]]] = data["poster"][i[0]]
-    final_movie_list = [{i:k} for i,k in movie_list.items()]
+    final_movie_list = [{"title":i, "link":k} for i,k in movie_list.items()]
 
     return final_movie_list
 

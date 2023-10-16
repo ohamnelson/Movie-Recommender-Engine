@@ -16,6 +16,11 @@ urllib3
 uvicorn
 websockets
 uvloop
+tensorflow_hub
+tensorflow_text
+tensorflow
+sentence-transformers
+faiss-cpu
 
 
 
