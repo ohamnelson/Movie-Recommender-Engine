@@ -14,17 +14,20 @@ templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
-
+# reading the dataframe
 MovieDataSet = pd.read_csv("MovieFinal.csv")
 
+# checking to see if the move name database exists
 if os.path.exists("Database/MovieNameIndex.pk1"):
     with open("Database/MovieNameIndex.pk1", "rb") as f:
         MovieIndex = pickle.load(f)
 
+# checking to see if the recommender feature database exists
 if os.path.exists("Database/VectorOverviewIndex.pk1"):
     with open("Database/VectorOverviewIndex.pk1", "rb") as f:
         OverviewIndex = pickle.load(f)
 
+# downloading the embedding model
 encoder = SentenceTransformer("all-mpnet-base-v2")
 
 
