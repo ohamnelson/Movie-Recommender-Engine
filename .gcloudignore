@@ -1,8 +1,0 @@
-*.csv
-*.ipynb
-movie-recommender-web/
-.gitignore
-.ipynb_checkpoints
-.venv
-.Dockerfile
-*.json
