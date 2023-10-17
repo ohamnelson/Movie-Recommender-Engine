@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommenders - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .banner {
+            background-image: url('static/MovieBackground.jpeg');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            text-align: center;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .container h1 {
+            font-family: 'Playfair Display', serif; /* Apply the Playfair Display font */
+            font-weight: 700; /* Use the bold version of the font */
+            font-size: 36px;
+        }
+
+        .container h3 {
+            font-family: 'Playfair Display', serif; /* Apply the Playfair Display font */
+            font-size: 18px;
+        }
+
+        .container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .input-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 0 auto;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        
+    </div>
+    <div class="container">
+        <h1>Welcome to Recommenders</h1>
+        <h3>A personalized movie recommendation service</h3>
+        <form method="post" action="/movies/">
+            <div class="input-container">
+                <input type="text" name="movie_name" placeholder="Enter a movie...">
+            </div>
+            <button type="submit">Enter</button>
+        </form>
+    </div>
+</body>
+</html>
+
+

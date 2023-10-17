@@ -1,10 +1,19 @@
 import pandas as pd
 import numpy as np
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, Form
+from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles # for css staic pictures
 import pickle
 import os
 from sentence_transformers import SentenceTransformer
 import faiss
+
+app = FastAPI()
+
+templates = Jinja2Templates(directory="templates")
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+
 
 MovieDataSet = pd.read_csv("MovieFinal.csv")
 
@@ -18,7 +27,7 @@ if os.path.exists("Database/VectorOverviewIndex.pk1"):
 
 encoder = SentenceTransformer("all-mpnet-base-v2")
 
-app = FastAPI()
+
 
 def search(word):
     search_vec = encoder.encode(word)
@@ -41,7 +50,7 @@ def recommend(movie):
 
     SimilarLookUpTable = faiss.IndexFlatL2(OverviewIndex.shape[1])
     SimilarLookUpTable.add(OverviewIndex)
-    distance, Location = SimilarLookUpTable.search(search_vec, 11)
+    distance, Location = SimilarLookUpTable.search(search_vec, 9)
 
     Location = Location.reshape(-1,)
     SimilarMovies = list(MovieDataSet.iloc[Location]["movie_title"])[1:]
@@ -51,13 +60,23 @@ def recommend(movie):
 
     return final
 
-@app.get("/movies/{movies}")
-async def read_item(movies: str):
-    recommendations = recommend(movies)
+def chunk_list(lst, chunk_size):
+    return [lst[i:i + chunk_size] for i in range(0, len(lst), chunk_size)]
+
+@app.get('/')
+async def main(request: Request):
+    return templates.TemplateResponse('home.html', {'request': request})
+
+@app.post("/movies/")
+async def movies(request:Request, movie_name: str = Form(...)):
+    recommendations = recommend(movie_name)
     RecommendedList = [{"title":i, "link":k} for i,k in recommendations.items()]
+
+    chunked_image_list = chunk_list(RecommendedList, 4)
     
 
-    return RecommendedList
+    return templates.TemplateResponse('recommendation.html', {'request': request, "movies":chunked_image_list, "movie_name":movie_name.capitalize()})
+  
 
 if __name__ == '__main__':
     app.run(debug = True)

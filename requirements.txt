@@ -21,6 +21,7 @@ tensorflow_text
 tensorflow
 sentence-transformers
 faiss-cpu
+python-multipart
 
 
 

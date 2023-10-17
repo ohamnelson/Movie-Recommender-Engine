@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picture Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            font-size: 18px;
+        }
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .image-container img {
+            width: 300px;
+            height: 300px;
+            margin: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>You May Like this Movies Since you Liked {{ movie_name }}</h1>
+    <div class="image-container">
+        {% for index in movies %}
+            <div class="image-row">
+                {% for item in index %}
+                    <img src="{{item.link}}" alt="Image 1">
+                {% endfor%}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
